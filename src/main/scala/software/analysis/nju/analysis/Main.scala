@@ -24,12 +24,9 @@ object Main {
     val filter = new RowFilter(CompareFilter.CompareOp.EQUAL, new RegexStringComparator(rowRegexp))
     scan.setFilter(filter)
     val scan_str= TableMapReduceUtil.convertScanToString(scan)
-    conf.set(TableInputFormat.SCAN,scan_str)
-    val hBaseRDD = sc.newAPIHadoopRDD(conf, classOf[TableInputFormat],
-      classOf[org.apache.hadoop.hbase.io.ImmutableBytesWritable],
-      classOf[org.apache.hadoop.hbase.client.Result])
-    val count = hBaseRDD.count()
-    println("RDDCOUNT:"+ count)
+    conf.set(TableInputFormat.SCAN, scan_str)
+
+
   }
 
 }
