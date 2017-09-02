@@ -45,15 +45,17 @@ public class UserVisitTimeDaoImpl extends BaseDao {
         return null;
     }
 
-    public long getFirstVisitTime(int shopId, String mac) {
+    public long getStayTime(int shopId, String mac) {
         ShardedJedis jedis = JedisPoolManager.getResource();
         String key = shopId + "||" + mac;
         String firstVisitTime = jedis.lindex(key, 0);
+        Long len = jedis.llen(key);
+        String LastVisitTime = jedis.lindex(key, len - 1);
         jedis.close();
         if (firstVisitTime == null) {
             return SparkProperties.DEFAULT_FIRST_VISIT_TIME;
         } else {
-            return Long.valueOf(firstVisitTime);
+            return Long.valueOf(LastVisitTime) - Long.valueOf(firstVisitTime);
         }
     }
 }

@@ -1,10 +1,12 @@
 package software.analysis.nju.util
 
-import net.minidev.json.{JSONObject}
+import net.minidev.json.{JSONArray, JSONObject}
 import net.minidev.json.parser.JSONParser
+
 import scala.collection.mutable
 import scala.collection.JavaConversions.mapAsScalaMap
 import scala.collection.JavaConversions.mutableMapAsJavaMap
+
 
 object ParseMapToJson extends App {
   def map2Json(map : mutable.Map[String,Int]) : String = {

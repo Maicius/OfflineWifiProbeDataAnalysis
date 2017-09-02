@@ -25,7 +25,7 @@ object Main {
     scan.setFilter(filter)
     val scan_str= TableMapReduceUtil.convertScanToString(scan)
     conf.set(TableInputFormat.SCAN, scan_str)
-
+    AnalysisEachDay.analysisStayTime(sc, conf)
 
   }
 
